@@ -1,4 +1,6 @@
 namespace PersonajeRecursos;
+using BatallaRecursos;
+using System.Text.Json;
 
 public class Personaje {
     private Datos datos;
@@ -11,6 +13,19 @@ public class Personaje {
 
     public Datos Datos { get => datos; }
     public Caracteristicas Caract { get => caract; }
+
+    public void Atacar(Personaje enemigo) {
+        int danio = CalcularDanio(this,enemigo);
+        enemigo.Caract.Salud -= danio;
+    }
+    public int CalcularDanio(Personaje atacante, Personaje defensor) {
+        int ataque = atacante.Caract.Destreza * atacante.Caract.Fuerza * atacante.Caract.Nivel;
+        Random random = new();
+        int efectividad = random.Next(1,101);
+        int defensa = defensor.Caract.Armadura * defensor.Caract.Velocidad;
+        int danio = ((ataque * efectividad) - defensa) / 500;
+        return danio;
+    }
 }
 
 public class Caracteristicas {
@@ -26,7 +41,7 @@ public class Caracteristicas {
         fuerza = fuer;
         armadura = arm;
         nivel = 1;
-        salud = 100;
+        Salud = 100;
     }
 
     public int Velocidad { get => velocidad; }
@@ -34,7 +49,7 @@ public class Caracteristicas {
     public int Fuerza { get => fuerza; }
     public int Nivel { get => nivel; }
     public int Armadura { get => armadura; }
-    public int Salud { get => salud; }
+    public int Salud { get => salud; set => salud = value; }
 }
 
 public class Datos {
@@ -60,10 +75,9 @@ public enum Tipo {
     Espía,
     Estratega,
 }
-
 public class FabricaDePersonajes {
-    public Personaje crearPersonaje() {
-        Tipo tipo = elegirTipoAleatorio();
+    public Personaje CrearPersonaje() {
+        Tipo tipo = ElegirTipoAleatorio();
         Random random = new Random();
         int velocidad = 5;
         int destreza = 5;
@@ -96,24 +110,48 @@ public class FabricaDePersonajes {
                                  armadura = random.Next(2,5);
             break;
         }
-        string nombre = "Chespirito";
-        int edad = random.Next(15,101);
+        Usuario salida = await GenerarUsuarioAsync();
+        string nombre = salida.Name.Title + salida.Name.First + salida.Name.Last;
+        int edad = salida.Nacimiento.Age;
         Datos d = new(tipo,nombre,edad);
         Caracteristicas c = new(velocidad,destreza,fuerza,armadura);
         Personaje p = new(d,c);
         return p;
     }
-    public Tipo elegirTipoAleatorio() {
+    public Tipo ElegirTipoAleatorio() {
         Array tipos = Enum.GetValues(typeof(Tipo));
         Random random = new Random();
         Tipo tipoAleatorio = (Tipo)tipos.GetValue(random.Next(tipos.Length));
         return tipoAleatorio;
     }
+
+    static async Task<Usuario> GenerarUsuarioAsync() {
+        var url = "https://randomuser.me/api/";
+    try
+    {
+        HttpClient client = new HttpClient();
+        HttpResponseMessage response = await client.GetAsync(url);
+        response.EnsureSuccessStatusCode();
+        string responseBody = await response.Content.ReadAsStringAsync();
+        Usuario usu = JsonSerializer.Deserialize<Usuario>(responseBody);
+        return usu;
+    }
+    catch (HttpRequestException e)
+    {
+        Console.WriteLine("Problemas de acceso a la API");
+        Console.WriteLine("Message :{0} ", e.Message);
+        return null;
+    }
+    }
     
 }
 
-public class Habilidad {
+/*public class Habilidad {
     private string nombre;
-    private bool ulti;
     private int daño;
-}
+    private int efectividad;
+
+    public string Nombre { get => nombre; }
+    public int Daño { get => daño; }
+    public int Efectividad { get => efectividad; }
+}*/
