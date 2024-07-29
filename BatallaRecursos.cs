@@ -25,6 +25,7 @@ public class Batalla {
         }
         if (heroe.Caract.Salud>0) {
             Console.WriteLine("GANASTE LA BATALLA");
+            heroe.Caract.Salud = 100;
         } else {
             Console.WriteLine("PERDISTE LA BATALLA");
         }

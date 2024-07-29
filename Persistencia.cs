@@ -1,14 +1,18 @@
 using PersonajeRecursos;
+using System.Text.Json;
 
-public class PersonajesJson {
-    public void GuardarPersonajes(List<Personaje> lista) {
-
+public static class PersonajesJson {
+    public static void GuardarPersonajes(List<Personaje> lista, string nombreArchivo) {
+        string jsonString = JsonSerializer.Serialize(lista, new JsonSerializerOptions { WriteIndented = true });
+        File.WriteAllText(nombreArchivo, jsonString);
     }
-    public void LeerPersonajes(string nombreArchivo) {
-
+    public static List<Personaje> LeerPersonajes(string nombreArchivo) {
+        string jsonString = File.ReadAllText(nombreArchivo);
+        List<Personaje> lista = JsonSerializer.Deserialize<List<Personaje>>(jsonString);
+        return lista;
     }
-    public void Existe(string nombreArchivo) {
-
+    public static bool Existe(string nombreArchivo) {
+        return File.Exists(nombreArchivo) && new FileInfo(nombreArchivo).Length > 0;
     }
 }
 
