@@ -17,13 +17,16 @@ public static class PersonajesJson {
 }
 
 public class HistorialJson {
-    public void GuardarGanador(Personaje ganador) {
-
+    public void GuardarGanador(Personaje ganador, string nombreArchivo) {
+        string jsonString = JsonSerializer.Serialize(ganador, new JsonSerializerOptions { WriteIndented = true });
+        File.WriteAllText(nombreArchivo, jsonString);
     }
-    public void LeerGanadores(string nombreArchivo) {
-
+    public List<Personaje> LeerGanadores(string nombreArchivo) {
+        string jsonString = File.ReadAllText(nombreArchivo);
+        List<Personaje> lista = JsonSerializer.Deserialize<List<Personaje>>(jsonString);
+        return lista;
     }
-    public void Existe(string nombreArchivo) {
-
+    public bool Existe(string nombreArchivo) {
+        return File.Exists(nombreArchivo) && new FileInfo(nombreArchivo).Length > 0;
     }
 }

@@ -1,4 +1,5 @@
 // Root myDeserializedClass = JsonSerializer.Deserialize<Root>(myJsonResponse);
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
     public class Nacimiento
@@ -47,4 +48,30 @@ using System.Text.Json.Serialization;
 
         [JsonPropertyName("dob")]
         public Nacimiento Nacimiento { get; set; }
+    }
+    public class Results {
+        [JsonPropertyName("results")]
+        public List<Usuario> Usuarios { get; set; }
+    }
+
+    public static class GeneradorDeUsuarios {
+    
+        public static async Task<Results> GenerarUsuariosAsync() {
+        var url = "https://randomuser.me/api/?results=10&inc=name,gender,dob,location&noinfo";
+        try
+        {
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync(url);
+            response.EnsureSuccessStatusCode();
+            string responseBody = await response.Content.ReadAsStringAsync();
+            Results usu = JsonSerializer.Deserialize<Results>(responseBody);
+            return usu;
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine("Problemas de acceso a la API");
+            Console.WriteLine("Message :{0} ", e.Message);
+            return null;
+        }
+        }
     }
