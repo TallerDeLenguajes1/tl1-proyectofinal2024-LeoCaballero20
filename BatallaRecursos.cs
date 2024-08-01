@@ -13,29 +13,7 @@ public class Batalla {
 
     public void Iniciar() {
         PresentarBatalla();
-        while (heroe.Caract.Salud>0 && enemigo.Caract.Salud>0) {
-            InterfazGrafica.MostrarEstadoPersonajes(heroe,enemigo);
-            TurnoHeroe(enemigo);
-            Thread.Sleep(1000);
-            InterfazGrafica.MostrarEstadoPersonajes(heroe,enemigo);
-            InterfazGrafica.LimpiarPantalla();
-            InterfazGrafica.MostrarEstadoPersonajes(heroe,enemigo);
-            if (enemigo.EstaVivo()) {
-                TurnoEnemigo();
-                Thread.Sleep(1000);
-                InterfazGrafica.MostrarEstadoPersonajes(heroe,enemigo);
-                InterfazGrafica.LimpiarPantalla();
-                InterfazGrafica.MostrarEstadoPersonajes(heroe,enemigo);
-            }
-        }
-        if (heroe.Caract.Salud>0) {
-            InterfazGrafica.LimpiarPantalla();
-            InterfazGrafica.MostrarMensajeGradualmente("\nHAS DERROTADO A " + enemigo.Datos.Nombre);
-            heroe.Caract.Salud = 100;
-            InterfazGrafica.EsperarEntradaUsuario();
-        } else {
-            Console.WriteLine("\nTE HAN DERROTADO");
-        }
+        EjecutarBatalla();
     }
     public void TurnoHeroe(Personaje enemigo) {
         Random random = new();
@@ -66,16 +44,18 @@ public class Batalla {
                                 }
             break;
             case Estado.Paralizado: InterfazGrafica.MostrarEventoBatalla(heroe.Datos.Nombre + " está paralizado, no se puede mover!\n");
-                                    sigueEfecto = random.Next(2);
+                                    Thread.Sleep(1000);
+                                    sigueEfecto = random.Next(3);
                                     if (sigueEfecto==0) {
                                         heroe.Caract.Estado = Estado.Normal;
                                         InterfazGrafica.MostrarEventoBatalla(heroe.Datos.Nombre + " volvió a la normalidad\n");
                                     }                                                                   
             break;
-            case Estado.Envenenado: InterfazGrafica.MostrarEventoBatalla(heroe.Datos.Nombre + " está envenenado, pierde 3 puntos de salud!\n");
-                                    heroe.Caract.Salud -= 3;
+            case Estado.Envenenado: InterfazGrafica.MostrarEventoBatalla(heroe.Datos.Nombre + " está envenenado, pierde 5 puntos de salud!\n");
+                                    heroe.Caract.Salud -= 5;
                                     InterfazGrafica.MostrarEstadoPersonajes(heroe,enemigo);
-                                    sigueEfecto = random.Next(2);
+                                    Thread.Sleep(1000);
+                                    sigueEfecto = random.Next(3);
                                     if (sigueEfecto==0) {
                                         heroe.Caract.Estado = Estado.Normal;
                                         InterfazGrafica.MostrarEventoBatalla(heroe.Datos.Nombre + " volvió a la normalidad\n");
@@ -106,7 +86,8 @@ public class Batalla {
             break;
             case Estado.Hipnotizado: InterfazGrafica.MostrarEventoBatalla(heroe.Datos.Nombre + " está hipnotizado, se ataca a sí mismo!\n");
                                      heroe.Atacar(heroe);
-                                     sigueEfecto = random.Next(2);
+                                     Thread.Sleep(1000);
+                                     sigueEfecto = random.Next(3);
                                      if (sigueEfecto==0) {
                                         heroe.Caract.Estado = Estado.Normal;
                                         InterfazGrafica.MostrarEventoBatalla(heroe.Datos.Nombre + " volvió a la normalidad\n");
@@ -131,15 +112,17 @@ public class Batalla {
                                 }
             break;
             case Estado.Paralizado: InterfazGrafica.MostrarEventoBatalla(enemigo.Datos.Nombre + " está paralizado, no se puede mover!");
-                                    sigueEfecto = random.Next(2);
+                                    Thread.Sleep(1000);
+                                    sigueEfecto = random.Next(3);
                                     if (sigueEfecto==0) {
                                         enemigo.Caract.Estado = Estado.Normal;
                                         InterfazGrafica.MostrarEventoBatalla(enemigo.Datos.Nombre + " volvió a la normalidad\n");
                                     } 
             break;
-            case Estado.Envenenado: InterfazGrafica.MostrarEventoBatalla(enemigo.Datos.Nombre + " está envenenado, pierde 3 puntos de salud!\n");
-                                    enemigo.Caract.Salud -= 3;
-                                    sigueEfecto = random.Next(2);
+            case Estado.Envenenado: InterfazGrafica.MostrarEventoBatalla(enemigo.Datos.Nombre + " está envenenado, pierde 5 puntos de salud!\n");
+                                    enemigo.Caract.Salud -= 5;
+                                    Thread.Sleep(1000);
+                                    sigueEfecto = random.Next(3);
                                     if (sigueEfecto==0) {
                                         enemigo.Caract.Estado = Estado.Normal;
                                         InterfazGrafica.MostrarEventoBatalla(enemigo.Datos.Nombre + " volvió a la normalidad\n");
@@ -156,7 +139,8 @@ public class Batalla {
             break;
             case Estado.Hipnotizado: InterfazGrafica.MostrarEventoBatalla(enemigo.Datos.Nombre + " está hipnotizado, se ataca a sí mismo!\n");
                                      enemigo.Atacar(enemigo);
-                                     sigueEfecto = random.Next(2);
+                                     Thread.Sleep(1000);
+                                     sigueEfecto = random.Next(3);
                                      if (sigueEfecto==0) {
                                         enemigo.Caract.Estado = Estado.Normal;
                                         InterfazGrafica.MostrarEventoBatalla(enemigo.Datos.Nombre + " volvió a la normalidad\n");
@@ -169,10 +153,61 @@ public class Batalla {
         InterfazGrafica.MostrarMensajeGradualmente("ENEMIGO");
         InterfazGrafica.MostrarMensajeGradualmente("\nNombre: " + enemigo.Datos.Nombre);
         InterfazGrafica.MostrarMensajeGradualmente("Edad: " + enemigo.Datos.Edad);
+        InterfazGrafica.MostrarMensajeGradualmente("Ubicación: " + enemigo.Datos.Locacion);
         InterfazGrafica.MostrarMensajeGradualmente("Tipo: " + enemigo.Datos.Tipo);
         InterfazGrafica.MostrarMensajeGradualmente("Habilidad: " + enemigo.Caract.Habilidad);
         InterfazGrafica.EsperarEntradaUsuario();
         InterfazGrafica.LimpiarPantalla();
+    }
+    public void EjecutarBatalla() {
+        while (heroe.Caract.Salud>0 && enemigo.Caract.Salud>0) {
+            InterfazGrafica.MostrarEstadoPersonajes(heroe,enemigo);
+            if (heroe.Caract.Velocidad>=enemigo.Caract.Velocidad) {
+                TurnoHeroe(enemigo);
+                Thread.Sleep(1000);
+                InterfazGrafica.MostrarEstadoPersonajes(heroe,enemigo);
+                InterfazGrafica.LimpiarPantalla();
+                InterfazGrafica.MostrarEstadoPersonajes(heroe,enemigo);
+                if (enemigo.EstaVivo()) {
+                    TurnoEnemigo();
+                    Thread.Sleep(1000);
+                    InterfazGrafica.MostrarEstadoPersonajes(heroe,enemigo);
+                    InterfazGrafica.LimpiarPantalla();
+                    InterfazGrafica.MostrarEstadoPersonajes(heroe,enemigo);
+                }
+            } else {
+                TurnoEnemigo();
+                Thread.Sleep(1000);
+                InterfazGrafica.MostrarEstadoPersonajes(heroe,enemigo);
+                InterfazGrafica.LimpiarPantalla();
+                InterfazGrafica.MostrarEstadoPersonajes(heroe,enemigo);
+                if (heroe.EstaVivo()) {
+                    TurnoHeroe(enemigo);
+                    Thread.Sleep(1000);
+                    InterfazGrafica.MostrarEstadoPersonajes(heroe,enemigo);
+                    InterfazGrafica.LimpiarPantalla();
+                    InterfazGrafica.MostrarEstadoPersonajes(heroe,enemigo);
+                }
+            }
+        }
+        if (heroe.Caract.Salud>0) {
+            InterfazGrafica.LimpiarPantalla();
+            InterfazGrafica.MostrarMensajeGradualmente("VICTORIA");
+            AdministradorDeMusica.ReproducirMusica("audio/victory-sound.mp3");
+            Thread.Sleep(1500);
+            AdministradorDeMusica.ReproducirMusica("audio/victory.mp3");
+            Thread.Sleep(1500);
+            InterfazGrafica.MostrarMensajeGradualmente("\nHAS DERROTADO A " + enemigo.Datos.Nombre);
+            heroe.Caract.Salud = 100;
+            InterfazGrafica.MostrarMensajeGradualmente("SUBES DE NIVEL!");
+            heroe.Caract.Nivel++;
+            InterfazGrafica.EsperarEntradaUsuario();
+        } else {
+            InterfazGrafica.LimpiarPantalla();
+            AdministradorDeMusica.ReproducirMusica("audio/lost.mp3");
+            InterfazGrafica.MostrarMensajeGradualmente("\nTE HAN DERROTADO");
+            Thread.Sleep(2000);
+        }
     }
 
 }

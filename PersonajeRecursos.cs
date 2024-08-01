@@ -16,8 +16,8 @@ public class Personaje {
 
     public void Atacar(Personaje enemigo) {
         InterfazGrafica.MostrarMensajeGradualmente(Datos.Nombre +  " ataca!\n");
-        int danio = CalcularDanio(this,enemigo);
-        InterfazGrafica.MostrarMensajeGradualmente("Daño realizado: " + danio);
+        int danio = CalcularDanio(enemigo);
+        InterfazGrafica.MostrarMensajeGradualmente("Daño realizado: " + danio + "\n");
         enemigo.Caract.Salud -= danio;
     }
     public void LanzarHabilidad(Personaje enemigo) {
@@ -36,12 +36,12 @@ public class Personaje {
             break;
         }
     }
-    public int CalcularDanio(Personaje atacante, Personaje defensor) {
-        int ataque = atacante.Caract.Destreza * atacante.Caract.Fuerza * atacante.Caract.Nivel;
+    public int CalcularDanio(Personaje defensor) {
         Random random = new();
-        int efectividad = random.Next(50,101);
-        int defensa = defensor.Caract.Armadura * defensor.Caract.Velocidad;
-        int danio = ((ataque * efectividad) - defensa) / 150;
+        int ataque = Caract.Destreza * Caract.Fuerza * Caract.Nivel;
+        int defensa = Caract.Armadura * Caract.Velocidad;
+        int efectividad = random.Next((Caract.Nivel*10)-10,101);
+        int danio = ((ataque * efectividad) - defensa)/275;
         return danio;
     }
     public bool EstaVivo() {
@@ -124,28 +124,28 @@ public static class FabricaDePersonajes {
         int armadura = 5;
         switch (tipo) {
             case Tipo.Detonante: velocidad = random.Next(3,6);
-                                 destreza = random.Next(3,6);
-                                 fuerza = random.Next(6,8);
+                                 destreza = random.Next(4,7);
+                                 fuerza = random.Next(7,10);
                                  armadura = random.Next(5,7);
             break;
             case Tipo.Guardia:  velocidad = random.Next(1,4);
-                                destreza = random.Next(1,3);
-                                fuerza = random.Next(8,10);
-                                armadura = random.Next(9,11);
+                                destreza = random.Next(2,5);
+                                fuerza = random.Next(7,10);
+                                armadura = random.Next(8,11);
             break;
-            case Tipo.Combatiente: velocidad = random.Next(3,6);
+            case Tipo.Combatiente: velocidad = random.Next(6,9);
                                    destreza = random.Next(4,7);
-                                   fuerza = random.Next(9,11);
+                                   fuerza = random.Next(8,11);
                                    armadura = random.Next(7,10);
             break;
-            case Tipo.Espía:    velocidad = random.Next(7,10);
-                                destreza = random.Next(8,11);
+            case Tipo.Espía:    velocidad = random.Next(8,11);
+                                destreza = random.Next(7,10);
                                 fuerza = random.Next(2,5);
                                 armadura = random.Next(1,4);
             break;
-            case Tipo.Estratega: velocidad = random.Next(3,6);
+            case Tipo.Estratega: velocidad = random.Next(4,7);
                                  destreza = random.Next(7,11);
-                                 fuerza = random.Next(3,7);
+                                 fuerza = random.Next(3,6);
                                  armadura = random.Next(2,5);
             break;
         }
@@ -171,14 +171,10 @@ public static class FabricaDePersonajes {
         return habAleatoria;
     }
     public static Personaje CrearHeroe() {
-        InterfazGrafica.MostrarMensajeGradualmente("Está por comenzar la aventura...");
-        InterfazGrafica.MostrarMensajeGradualmente("Ingrese el nombre de su héroe");
-        string nombreHeroe = Console.ReadLine();
-        InterfazGrafica.MostrarMensajeGradualmente("Ingrese la edad de su héroe");
-        string edadHeroe = Console.ReadLine();
-        Int32.TryParse(edadHeroe, out int edad);
-        Datos d = new(ElegirTipoAleatorio(),nombreHeroe,edad,"Tucumán, Argentina");
-        Caracteristicas c = new(3,3,4,4,ElegirHabilidadAleatoria());
+        string nombreHeroe = "Leonardo";
+        int edadHeroe = 24;
+        Datos d = new(ElegirTipoAleatorio(),nombreHeroe,edadHeroe,"Tucumán, Argentina");
+        Caracteristicas c = new(5,4,4,5,ElegirHabilidadAleatoria());
         Personaje p = new(d,c);
         p.Caract.Nivel = 2;
         return p;
