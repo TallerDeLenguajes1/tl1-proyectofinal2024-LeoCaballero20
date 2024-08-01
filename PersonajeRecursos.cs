@@ -15,37 +15,51 @@ public class Personaje {
     public Caracteristicas Caract { get => caract; set => caract = value;}
 
     public void Atacar(Personaje enemigo) {
-        Console.WriteLine(Datos.Nombre +  " ataca!\n");
+        InterfazGrafica.MostrarMensajeGradualmente(Datos.Nombre +  " ataca!\n");
         int danio = CalcularDanio(this,enemigo);
-        Console.WriteLine("Daño realizado: " + danio);
+        InterfazGrafica.MostrarMensajeGradualmente("Daño realizado: " + danio);
         enemigo.Caract.Salud -= danio;
     }
     public void LanzarHabilidad(Personaje enemigo) {
         switch (Caract.Habilidad) {
-            case Habilidad.Paralisis: Console.WriteLine(Datos.Nombre +  " lanza su habilidad!\n");
+            case Habilidad.Paralisis: InterfazGrafica.MostrarMensajeGradualmente(Datos.Nombre +  " lanza su habilidad!\n");
                                       enemigo.Caract.Estado = Estado.Paralizado;
-                                      Console.WriteLine(enemigo.Datos.Nombre + " fue paralizado!");
+                                      InterfazGrafica.MostrarMensajeGradualmente(enemigo.Datos.Nombre + " fue paralizado!");
             break;
-            case Habilidad.Envenenamiento: Console.WriteLine(Datos.Nombre +  " lanza su habilidad!\n");
+            case Habilidad.Envenenamiento: InterfazGrafica.MostrarMensajeGradualmente(Datos.Nombre +  " lanza su habilidad!\n");
                                            enemigo.Caract.Estado = Estado.Envenenado;
-                                           Console.WriteLine(enemigo.Datos.Nombre + " fue envenenado!");
+                                           InterfazGrafica.MostrarMensajeGradualmente(enemigo.Datos.Nombre + " fue envenenado!");
             break;
-            case Habilidad.Hipnosis: Console.WriteLine(Datos.Nombre +  " lanza su habilidad!\n");
+            case Habilidad.Hipnosis: InterfazGrafica.MostrarMensajeGradualmente(Datos.Nombre +  " lanza su habilidad!\n");
                                      enemigo.Caract.Estado = Estado.Hipnotizado;
-                                     Console.WriteLine(enemigo.Datos.Nombre + " fue hipnotizado!");
+                                     InterfazGrafica.MostrarMensajeGradualmente(enemigo.Datos.Nombre + " fue hipnotizado!");
             break;
         }
     }
     public int CalcularDanio(Personaje atacante, Personaje defensor) {
         int ataque = atacante.Caract.Destreza * atacante.Caract.Fuerza * atacante.Caract.Nivel;
         Random random = new();
-        int efectividad = random.Next(1,101);
+        int efectividad = random.Next(50,101);
         int defensa = defensor.Caract.Armadura * defensor.Caract.Velocidad;
-        int danio = ((ataque * efectividad) - defensa) / 300;
+        int danio = ((ataque * efectividad) - defensa) / 150;
         return danio;
     }
     public bool EstaVivo() {
         return Caract.Salud>0;
+    }
+    public string mostrarEstado() {
+        string mensaje = "";
+        switch (Caract.Estado) {
+            case Estado.Normal: mensaje = "";
+            break;
+            case Estado.Paralizado: mensaje = "PARALIZADO";
+            break;
+            case Estado.Envenenado: mensaje = "ENVENENADO";
+            break;
+            case Estado.Hipnotizado: mensaje = "HIPNOTIZADO";
+            break;
+        }
+        return mensaje;
     }
 }
 
@@ -157,9 +171,10 @@ public static class FabricaDePersonajes {
         return habAleatoria;
     }
     public static Personaje CrearHeroe() {
-        Console.WriteLine("Ingrese el nombre de su héroe");
+        InterfazGrafica.MostrarMensajeGradualmente("Está por comenzar la aventura...");
+        InterfazGrafica.MostrarMensajeGradualmente("Ingrese el nombre de su héroe");
         string nombreHeroe = Console.ReadLine();
-        Console.WriteLine("Ingrese la edad de su héroe");
+        InterfazGrafica.MostrarMensajeGradualmente("Ingrese la edad de su héroe");
         string edadHeroe = Console.ReadLine();
         Int32.TryParse(edadHeroe, out int edad);
         Datos d = new(ElegirTipoAleatorio(),nombreHeroe,edad,"Tucumán, Argentina");

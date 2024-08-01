@@ -23,36 +23,35 @@ public class Juego {
         }
     }
     public void Iniciar() {
-        Console.WriteLine("\nHEROE");
-        Console.WriteLine("Nombre: " + heroe.Datos.Nombre);
-        Console.WriteLine("Edad: " + heroe.Datos.Edad);
-        Console.WriteLine("Tipo: " + heroe.Datos.Tipo);
-        Console.WriteLine("Velocidad: " + heroe.Caract.Velocidad);
-        Console.WriteLine("Destreza: " + heroe.Caract.Destreza);
-        Console.WriteLine("Fuerza: " + heroe.Caract.Fuerza);
-        Console.WriteLine("Armadura: " + heroe.Caract.Armadura);
-        Console.WriteLine("Habilidad: " + heroe.Caract.Habilidad);
+        Intro();
         int i = 1;
         foreach (Batalla b in batallas) {
             if (heroe.EstaVivo()) {
-                Console.WriteLine("\nBATALLA " + i);
-                Console.WriteLine("ENEMIGO");
-                Console.WriteLine("\nNombre: " + b.enemigo.Datos.Nombre);
-                Console.WriteLine("Edad: " + b.enemigo.Datos.Edad);
-                Console.WriteLine("Tipo: " + b.enemigo.Datos.Tipo);
-                Console.WriteLine("Velocidad: " + b.enemigo.Caract.Velocidad);
-                Console.WriteLine("Destreza: " + b.enemigo.Caract.Destreza);
-                Console.WriteLine("Fuerza: " + b.enemigo.Caract.Fuerza);
-                Console.WriteLine("Armadura: " + b.enemigo.Caract.Armadura);
-                Console.WriteLine("Habilidad: " + b.enemigo.Caract.Habilidad);
+                AdministradorDeMusica.ReproducirMusica("audio/battle.mp3");
+                InterfazGrafica.LimpiarPantalla();
+                InterfazGrafica.MostrarMensajeGradualmente("\nBATALLA " + i);
+                Thread.Sleep(1000);
                 b.Iniciar();
                 i++;
             }
         }
         if (heroe.EstaVivo()) {
-            Console.WriteLine("\nGANASTE EL JUEGO");
+            InterfazGrafica.MostrarMensajeGradualmente("\nGANASTE EL JUEGO");
         } else {
-            Console.WriteLine("\nPERDISTE EL JUEGO");
+            InterfazGrafica.MostrarMensajeGradualmente("\nPERDISTE EL JUEGO");
         }
+    }
+    public void Intro() {
+        AdministradorDeMusica.ReproducirMusica("audio/superhero-intro.mp3");
+        InterfazGrafica.LimpiarPantalla();
+        //InterfazGrafica.MostrarMensajeGradualmente($"En el reino de Eldoria, un lugar de paisajes majestuosos y antiguas leyendas, vivía un valiente guerrero llamado {heroe.Datos.Nombre}. {heroe.Datos.Nombre} era conocido por su destreza en el combate y su inquebrantable sentido de la justicia. Portador de la legendaria Espada de la Luz, una arma forjada por los antiguos dioses, {heroe.Datos.Nombre} había jurado proteger a los inocentes y mantener la paz en el reino.");
+        InterfazGrafica.LimpiarPantalla();
+        InterfazGrafica.MostrarMensajeGradualmente("\nHEROE");
+        InterfazGrafica.MostrarMensajeGradualmente("Nombre: " + heroe.Datos.Nombre);
+        InterfazGrafica.MostrarMensajeGradualmente("Edad: " + heroe.Datos.Edad);
+        InterfazGrafica.MostrarMensajeGradualmente("Tipo: " + heroe.Datos.Tipo);
+        InterfazGrafica.MostrarMensajeGradualmente("Habilidad: " + heroe.Caract.Habilidad);
+        InterfazGrafica.EsperarEntradaUsuario();
+        InterfazGrafica.LimpiarPantalla();
     }
 }
