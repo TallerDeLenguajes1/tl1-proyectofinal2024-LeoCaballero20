@@ -16,17 +16,37 @@ public static class PersonajesJson {
     }
 }
 
-public class HistorialJson {
-    public void GuardarGanador(Personaje ganador, string nombreArchivo) {
-        string jsonString = JsonSerializer.Serialize(ganador, new JsonSerializerOptions { WriteIndented = true });
+public static class HistorialJson {
+    public static void GuardarGanador(Personaje ganador, string nombreArchivo) {
+        List<RegistroPartida> historial;
+        if (Existe(nombreArchivo)) {
+            historial = LeerGanadores(nombreArchivo);
+        } else {
+            historial = new();
+        }
+        RegistroPartida registro = new(ganador,DateTime.Now);
+        historial.Add(registro);
+        string jsonString = JsonSerializer.Serialize(historial, new JsonSerializerOptions { WriteIndented = true });
         File.WriteAllText(nombreArchivo, jsonString);
     }
-    public List<Personaje> LeerGanadores(string nombreArchivo) {
+    public static List<RegistroPartida> LeerGanadores(string nombreArchivo) {
         string jsonString = File.ReadAllText(nombreArchivo);
-        List<Personaje> lista = JsonSerializer.Deserialize<List<Personaje>>(jsonString);
+        List<RegistroPartida> lista = JsonSerializer.Deserialize<List<RegistroPartida>>(jsonString);
         return lista;
     }
-    public bool Existe(string nombreArchivo) {
+    public static bool Existe(string nombreArchivo) {
         return File.Exists(nombreArchivo) && new FileInfo(nombreArchivo).Length > 0;
     }
+}
+public class RegistroPartida {
+    Personaje ganador;
+    DateTime fecha;
+
+    public RegistroPartida(Personaje gan, DateTime fec) {
+        ganador = gan;
+        fecha = fec;
+    }
+
+    public Personaje Ganador { get => ganador; set => ganador = value; }
+    public DateTime Fecha { get => fecha; set => fecha = value; }
 }

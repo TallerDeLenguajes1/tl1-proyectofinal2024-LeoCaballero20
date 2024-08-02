@@ -7,7 +7,7 @@ public class Juego {
     private List<Batalla> batallas = new();
     public Juego(List<Usuario> usuarios) { 
         heroe = FabricaDePersonajes.CrearHeroe();
-        string nombreArchivo = "personajes.txt";
+        string nombreArchivo = "registros/personajes.txt";
         if (!PersonajesJson.Existe(nombreArchivo)) {
             foreach (Usuario usu in usuarios) {
                 Personaje enemigo = FabricaDePersonajes.CrearPersonaje(usu);
@@ -31,15 +31,19 @@ public class Juego {
                 InterfazGrafica.LimpiarPantalla();
                 InterfazGrafica.MostrarMensajeGradualmente("\nBATALLA " + i);
                 Thread.Sleep(1000);
-                b.enemigo.Caract.Nivel = i;
+                b.enemigo.Caract.Nivel++;
+                b.enemigo.Caract.Salud += 50*i;
                 b.Iniciar();
                 i++;
             }
         }
         if (heroe.EstaVivo()) {
+            string nombreArchivo = "registros/ganadores.txt";
+            HistorialJson.GuardarGanador(heroe, nombreArchivo);
             InterfazGrafica.LimpiarPantalla();
             AdministradorDeMusica.ReproducirMusica("audio/victory-final.mp3");
             InterfazGrafica.MostrarMensajeGradualmente("\nFELICITACIONES, SALVASTE EL PLANETA!");
+            InterfazGrafica.EsperarEntradaUsuario();
         } else {
             InterfazGrafica.LimpiarPantalla();
             AdministradorDeMusica.ReproducirMusica("audio/game-over.mp3");

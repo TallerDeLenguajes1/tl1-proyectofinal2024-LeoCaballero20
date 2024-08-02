@@ -1,0 +1,59 @@
+[
+  {
+    "Datos": {
+      "Tipo": 1,
+      "Nombre": "Mrs Claire Adams",
+      "Edad": 65,
+      "Locacion": "Shelby, Georgia, United States",
+      "Genero": "Femenino"
+    },
+    "Caract": {
+      "Velocidad": 2,
+      "Destreza": 4,
+      "Fuerza": 8,
+      "Nivel": 0,
+      "Armadura": 10,
+      "Salud": 50,
+      "Habilidad": 2,
+      "Estado": 0
+    }
+  },
+  {
+    "Datos": {
+      "Tipo": 3,
+      "Nombre": "Ms Mayra Dhamdhame",
+      "Edad": 58,
+      "Locacion": "Gangtok, Lakshadweep, India",
+      "Genero": "Femenino"
+    },
+    "Caract": {
+      "Velocidad": 8,
+      "Destreza": 7,
+      "Fuerza": 2,
+      "Nivel": 0,
+      "Armadura": 1,
+      "Salud": 50,
+      "Habilidad": 1,
+      "Estado": 0
+    }
+  },
+  {
+    "Datos": {
+      "Tipo": 4,
+      "Nombre": "Monsieur Benedikt Brunet",
+      "Edad": 36,
+      "Locacion": "Eschlikon, Thurgau, Switzerland",
+      "Genero": "Masculino"
+    },
+    "Caract": {
+      "Velocidad": 5,
+      "Destreza": 7,
+      "Fuerza": 5,
+      "Nivel": 0,
+      "Armadura": 3,
+      "Salud": 50,
+      "Habilidad": 1,
+      "Estado": 0
+    }
+  }
+]

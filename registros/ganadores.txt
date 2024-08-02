@@ -1,0 +1,24 @@
+[
+  {
+    "Ganador": {
+      "Datos": {
+        "Tipo": 4,
+        "Nombre": "Leo",
+        "Edad": 24,
+        "Locacion": "Tucuman, Argentina",
+        "Genero": "Masculino"
+      },
+      "Caract": {
+        "Velocidad": 5,
+        "Destreza": 5,
+        "Fuerza": 5,
+        "Nivel": 6,
+        "Armadura": 5,
+        "Salud": 150,
+        "Habilidad": 2,
+        "Estado": 0
+      }
+    },
+    "Fecha": "2024-08-02T02:27:10.9750311-03:00"
+  }
+]
