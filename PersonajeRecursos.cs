@@ -44,7 +44,7 @@ public class Personaje {
         Random random = new();
         int ataque = Caract.Destreza * Caract.Fuerza * Caract.Nivel;
         int defensa = defensor.Caract.Armadura * defensor.Caract.Velocidad;
-        int efectividad = random.Next(1,101);
+        int efectividad = random.Next(20,101);
         int danio = ((ataque * efectividad) - defensa)/300;
         return danio;
     }
@@ -201,7 +201,7 @@ public static class FabricaDePersonajes {
         Datos d = new(ElegirTipoAleatorio(),nombreHeroe,edadHeroe,"Tucuman, Argentina","Masculino");
         Caracteristicas c = new(5,5,5,5,ElegirHabilidadAleatoria());
         Personaje p = new(d,c);
-        p.Caract.Nivel = 3;
+        p.Caract.Nivel = 5;
         p.Caract.Salud = 100;
         return p;
     }

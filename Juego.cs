@@ -31,7 +31,7 @@ public class Juego {
                 InterfazGrafica.LimpiarPantalla();
                 InterfazGrafica.MostrarMensajeGradualmente("\nBATALLA " + i);
                 Thread.Sleep(1000);
-                b.enemigo.Caract.Nivel++;
+                b.enemigo.Caract.Nivel = i;
                 b.enemigo.Caract.Salud += 50*i;
                 b.Iniciar();
                 i++;
@@ -69,6 +69,7 @@ public class Juego {
         InterfazGrafica.MostrarMensajeGradualmente("Edad: " + heroe.Datos.Edad);
         InterfazGrafica.MostrarMensajeGradualmente("Tipo: " + heroe.Datos.Tipo);
         InterfazGrafica.MostrarMensajeGradualmente("Habilidad: " + heroe.Caract.Habilidad);
+        InterfazGrafica.MostrarMensajeGradualmente("Nivel: " + heroe.Caract.Nivel);
         InterfazGrafica.EsperarEntradaUsuario();
         InterfazGrafica.LimpiarPantalla();
     }

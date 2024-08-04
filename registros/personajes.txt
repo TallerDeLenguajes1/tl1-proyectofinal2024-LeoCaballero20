@@ -1,16 +1,35 @@
 [
   {
     "Datos": {
-      "Tipo": 1,
-      "Nombre": "Mrs Claire Adams",
-      "Edad": 65,
-      "Locacion": "Shelby, Georgia, United States",
+      "Tipo": 2,
+      "Nombre": "Mrs Cust\u00F3dia Ribeiro",
+      "Edad": 57,
+      "Locacion": "Campo Largo, Acre, Brazil",
       "Genero": "Femenino"
     },
     "Caract": {
-      "Velocidad": 2,
-      "Destreza": 4,
-      "Fuerza": 8,
+      "Velocidad": 7,
+      "Destreza": 5,
+      "Fuerza": 10,
+      "Nivel": 0,
+      "Armadura": 9,
+      "Salud": 50,
+      "Habilidad": 2,
+      "Estado": 0
+    }
+  },
+  {
+    "Datos": {
+      "Tipo": 1,
+      "Nombre": "Mr Earl Kelley",
+      "Edad": 50,
+      "Locacion": "Clonakilty, Fingal, Ireland",
+      "Genero": "Masculino"
+    },
+    "Caract": {
+      "Velocidad": 1,
+      "Destreza": 2,
+      "Fuerza": 9,
       "Nivel": 0,
       "Armadura": 10,
       "Salud": 50,
@@ -21,17 +40,74 @@
   {
     "Datos": {
       "Tipo": 3,
-      "Nombre": "Ms Mayra Dhamdhame",
+      "Nombre": "Mr William Weigl",
       "Edad": 58,
-      "Locacion": "Gangtok, Lakshadweep, India",
-      "Genero": "Femenino"
+      "Locacion": "Limburg-Weilburg, Sachsen-Anhalt, Germany",
+      "Genero": "Masculino"
+    },
+    "Caract": {
+      "Velocidad": 9,
+      "Destreza": 8,
+      "Fuerza": 3,
+      "Nivel": 0,
+      "Armadura": 3,
+      "Salud": 50,
+      "Habilidad": 2,
+      "Estado": 0
+    }
+  },
+  {
+    "Datos": {
+      "Tipo": 2,
+      "Nombre": "Mr Bodhi Van der Wulp",
+      "Edad": 64,
+      "Locacion": "Oirsbeek, Drenthe, Netherlands",
+      "Genero": "Masculino"
     },
     "Caract": {
       "Velocidad": 8,
-      "Destreza": 7,
-      "Fuerza": 2,
+      "Destreza": 6,
+      "Fuerza": 8,
       "Nivel": 0,
-      "Armadura": 1,
+      "Armadura": 7,
+      "Salud": 50,
+      "Habilidad": 1,
+      "Estado": 0
+    }
+  },
+  {
+    "Datos": {
+      "Tipo": 2,
+      "Nombre": "Mr Cecil Ramos",
+      "Edad": 46,
+      "Locacion": "Toowoomba, Victoria, Australia",
+      "Genero": "Masculino"
+    },
+    "Caract": {
+      "Velocidad": 7,
+      "Destreza": 4,
+      "Fuerza": 8,
+      "Nivel": 0,
+      "Armadura": 9,
+      "Salud": 50,
+      "Habilidad": 0,
+      "Estado": 0
+    }
+  },
+  {
+    "Datos": {
+      "Tipo": 4,
+      "Nombre": "Ms Eus\u00E9bia Alves",
+      "Edad": 42,
+      "Locacion": "Nova Igua\u00E7u, Rio de Janeiro, Brazil",
+      "Genero": "Femenino"
+    },
+    "Caract": {
+      "Velocidad": 4,
+      "Destreza": 8,
+      "Fuerza": 5,
+      "Nivel": 0,
+      "Armadura": 2,
       "Salud": 50,
       "Habilidad": 1,
       "Estado": 0
@@ -40,17 +116,74 @@
   {
     "Datos": {
       "Tipo": 4,
-      "Nombre": "Monsieur Benedikt Brunet",
-      "Edad": 36,
-      "Locacion": "Eschlikon, Thurgau, Switzerland",
+      "Nombre": "Mr Lewis Evans",
+      "Edad": 58,
+      "Locacion": "Gisborne, Nelson, New Zealand",
       "Genero": "Masculino"
+    },
+    "Caract": {
+      "Velocidad": 4,
+      "Destreza": 10,
+      "Fuerza": 3,
+      "Nivel": 0,
+      "Armadura": 2,
+      "Salud": 50,
+      "Habilidad": 1,
+      "Estado": 0
+    }
+  },
+  {
+    "Datos": {
+      "Tipo": 0,
+      "Nombre": "Miss Donata Schnabel",
+      "Edad": 70,
+      "Locacion": "Walldorf, Niedersachsen, Germany",
+      "Genero": "Femenino"
+    },
+    "Caract": {
+      "Velocidad": 5,
+      "Destreza": 4,
+      "Fuerza": 8,
+      "Nivel": 0,
+      "Armadura": 6,
+      "Salud": 50,
+      "Habilidad": 2,
+      "Estado": 0
+    }
+  },
+  {
+    "Datos": {
+      "Tipo": 0,
+      "Nombre": "Mr Randall Watson",
+      "Edad": 34,
+      "Locacion": "Dunboyne, Monaghan, Ireland",
+      "Genero": "Masculino"
+    },
+    "Caract": {
+      "Velocidad": 4,
+      "Destreza": 4,
+      "Fuerza": 7,
+      "Nivel": 0,
+      "Armadura": 5,
+      "Salud": 50,
+      "Habilidad": 2,
+      "Estado": 0
+    }
+  },
+  {
+    "Datos": {
+      "Tipo": 4,
+      "Nombre": "Mrs Ella J\u00F8rgensen",
+      "Edad": 53,
+      "Locacion": "Tisvilde, Danmark, Denmark",
+      "Genero": "Femenino"
     },
     "Caract": {
       "Velocidad": 5,
       "Destreza": 7,
-      "Fuerza": 5,
+      "Fuerza": 4,
       "Nivel": 0,
-      "Armadura": 3,
+      "Armadura": 4,
       "Salud": 50,
       "Habilidad": 1,
       "Estado": 0

@@ -51,7 +51,7 @@ public class Batalla {
                                         InterfazGrafica.MostrarEventoBatalla(heroe.Datos.Nombre + " volvió a la normalidad\n");
                                     }                                                                   
             break;
-            case Estado.Envenenado: InterfazGrafica.MostrarEventoBatalla(heroe.Datos.Nombre + " está envenenado, pierde 5 puntos de salud!\n");
+            case Estado.Envenenado: InterfazGrafica.MostrarEventoBatalla(heroe.Datos.Nombre + $" está envenenado, pierde 5 puntos de salud!\n");
                                     Thread.Sleep(1000);
                                     heroe.Caract.Salud -= 5;
                                     InterfazGrafica.LimpiarPantalla();
@@ -120,8 +120,8 @@ public class Batalla {
                                         InterfazGrafica.MostrarEventoBatalla(enemigo.Datos.Nombre + " volvió a la normalidad\n");
                                     } 
             break;
-            case Estado.Envenenado: InterfazGrafica.MostrarEventoBatalla(enemigo.Datos.Nombre + " está envenenado, pierde 5 puntos de salud!\n");
-                                    enemigo.Caract.Salud -= 5;
+            case Estado.Envenenado: InterfazGrafica.MostrarEventoBatalla(enemigo.Datos.Nombre + $" está envenenado, pierde {heroe.Caract.Nivel*2}!\n");
+                                    enemigo.Caract.Salud -= heroe.Caract.Nivel*2;
                                     Thread.Sleep(1000);
                                     sigueEfecto = random.Next(2);
                                     if (sigueEfecto==0) {
@@ -141,8 +141,8 @@ public class Batalla {
             case Estado.Hipnotizado: InterfazGrafica.MostrarEventoBatalla(enemigo.Datos.Nombre + " está hipnotizado, se ataca a sí mismo!\n");
                                      enemigo.Atacar(enemigo);
                                      Thread.Sleep(1000);
-                                     sigueEfecto = random.Next(2);
-                                     if (sigueEfecto==0) {
+                                     sigueEfecto = random.Next(3);
+                                     if (sigueEfecto==0 || sigueEfecto==1) {
                                         enemigo.Caract.Estado = Estado.Normal;
                                         InterfazGrafica.MostrarEventoBatalla(enemigo.Datos.Nombre + " volvió a la normalidad\n");
                                      } 
@@ -158,6 +158,7 @@ public class Batalla {
         InterfazGrafica.MostrarMensajeGradualmente("Ubicación: " + enemigo.Datos.Locacion);
         InterfazGrafica.MostrarMensajeGradualmente("Tipo: " + enemigo.Datos.Tipo);
         InterfazGrafica.MostrarMensajeGradualmente("Habilidad: " + enemigo.Caract.Habilidad);
+        InterfazGrafica.MostrarMensajeGradualmente("Nivel: " + enemigo.Caract.Nivel);
         InterfazGrafica.EsperarEntradaUsuario();
         InterfazGrafica.LimpiarPantalla();
     }
@@ -188,7 +189,6 @@ public class Batalla {
             heroe.Caract.Salud = 100;
             InterfazGrafica.MostrarMensajeGradualmente("SUBES DE NIVEL!");
             heroe.Caract.Nivel++;
-            heroe.Caract.Salud+=50;
             InterfazGrafica.EsperarEntradaUsuario();
         } else {
             InterfazGrafica.LimpiarPantalla();
