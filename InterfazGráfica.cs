@@ -5,13 +5,13 @@ public static class InterfazGrafica
     public static void MostrarEstadoPersonajes(Personaje heroe, Personaje enemigo)
     {
         Console.SetCursorPosition(50, 0); // Posiciona el cursor en la columna 50
-        Console.WriteLine("=== Estado de los Personajes ===");
+        Console.WriteLine("==== Estado de los Personajes ====");
         Console.SetCursorPosition(50, 1);
-        Console.WriteLine($"{heroe.Datos.Nombre} | Salud: {heroe.Caract.Salud} {heroe.mostrarEstado()}");
+        Console.WriteLine($"{heroe.Datos.Nombre} | Salud: {heroe.Caract.Salud} {heroe.mostrarEstado().ToUpper()}");
         Console.SetCursorPosition(50, 2);
-        Console.WriteLine($"{enemigo.Datos.Nombre} | Salud: {enemigo.Caract.Salud} {enemigo.mostrarEstado()}");
+        Console.WriteLine($"{enemigo.Datos.Nombre} | Salud: {enemigo.Caract.Salud} {enemigo.mostrarEstado().ToUpper()}");
         Console.SetCursorPosition(50, 3);
-        Console.WriteLine("================================");
+        Console.WriteLine("==================================");
     }
 
     public static void MostrarEventoBatalla(string evento)

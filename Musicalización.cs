@@ -1,6 +1,5 @@
 using System.IO.Pipes;
 using NAudio.Wave;
-using NAudio.Wave.SampleProviders;
 
 public static class AdministradorDeMusica
 {

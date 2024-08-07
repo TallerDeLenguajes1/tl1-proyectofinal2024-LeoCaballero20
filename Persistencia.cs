@@ -1,5 +1,6 @@
 using PersonajeRecursos;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 public static class PersonajesJson {
     public static void GuardarPersonajes(List<Personaje> lista, string nombreArchivo) {
@@ -37,10 +38,25 @@ public static class HistorialJson {
     public static bool Existe(string nombreArchivo) {
         return File.Exists(nombreArchivo) && new FileInfo(nombreArchivo).Length > 0;
     }
+    public static void MostrarGanadores(string nombreArchivo) {
+        List<RegistroPartida> historial = LeerGanadores(nombreArchivo);
+        foreach (RegistroPartida r in historial) {
+            InterfazGrafica.LimpiarPantalla();
+            Console.WriteLine("\nNombre del Ganador: " + r.Ganador.Datos.Nombre);
+            Console.WriteLine("Fecha: " + r.Fecha.ToString("dd/mm/YY") + "\n");
+            InterfazGrafica.EsperarEntradaUsuario();
+        }
+    }
 }
 public class RegistroPartida {
+
+    [JsonPropertyName("ganador")]
     Personaje ganador;
+
+    [JsonPropertyName("fecha")]
     DateTime fecha;
+    
+    public RegistroPartida() {}
 
     public RegistroPartida(Personaje gan, DateTime fec) {
         ganador = gan;

@@ -2,9 +2,13 @@ namespace PersonajeRecursos;
 using BatallaRecursos;
 using NAudio.CoreAudioApi;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 public class Personaje {
+
+    [JsonPropertyName("datos")]
     private Datos datos;
+    [JsonPropertyName("caract")]
     private Caracteristicas caract;
     public Personaje() {}
     public Personaje(Datos d, Caracteristicas c) {
@@ -21,31 +25,61 @@ public class Personaje {
         if (Caract.Estado == Estado.Hipnotizado) {
             danio /= 2;
         }
-        InterfazGrafica.MostrarMensajeGradualmente("Daño realizado: " + danio + "\n");
-        enemigo.Caract.Salud -= danio;
+        if (danio > 0) {
+            InterfazGrafica.MostrarMensajeGradualmente("Daño realizado: " + danio + "\n");
+            enemigo.Caract.Salud -= danio;
+        } else {
+            InterfazGrafica.MostrarMensajeGradualmente("Ataque esquivado!");
+        }
+        if (danio > 19) {
+            InterfazGrafica.MostrarMensajeGradualmente("Ataque crítico!");
+        }
     }
     public void LanzarHabilidad(Personaje enemigo) {
+        Random random = new();
+        int acierto;
         switch (Caract.Habilidad) {
-            case Habilidad.Paralisis: InterfazGrafica.MostrarMensajeGradualmente(Datos.Nombre +  " lanza su habilidad!\n");
-                                      enemigo.Caract.Estado = Estado.Paralizado;
-                                      InterfazGrafica.MostrarMensajeGradualmente(enemigo.Datos.Nombre + " fue paralizado!");
+            case Habilidad.Paralisis: InterfazGrafica.MostrarEventoBatalla(Datos.Nombre +  " lanza su habilidad!\n");
+                                      Thread.Sleep(1000);
+                                      acierto = random.Next(3);
+                                      if (acierto == 0 || acierto == 1) {
+                                        enemigo.Caract.Estado = Estado.Paralizado;
+                                        InterfazGrafica.MostrarEventoBatalla(enemigo.Datos.Nombre + $" fue {enemigo.mostrarEstado()}!");
+                                      } else {
+                                        InterfazGrafica.MostrarEventoBatalla("Habilidad esquivada!");
+                                      }
             break;
             case Habilidad.Envenenamiento: InterfazGrafica.MostrarMensajeGradualmente(Datos.Nombre +  " lanza su habilidad!\n");
-                                           enemigo.Caract.Estado = Estado.Envenenado;
-                                           InterfazGrafica.MostrarMensajeGradualmente(enemigo.Datos.Nombre + " fue envenenado!");
+                                           Thread.Sleep(1000);
+                                           acierto = random.Next(3);
+                                           if (acierto == 0 || acierto == 1) {
+                                                enemigo.Caract.Estado = Estado.Envenenado;
+                                                InterfazGrafica.MostrarEventoBatalla(enemigo.Datos.Nombre + $" fue {enemigo.mostrarEstado()}!");
+                                            } else {
+                                                InterfazGrafica.MostrarEventoBatalla("Habilidad esquivada!");
+                                            }
             break;
             case Habilidad.Hipnosis: InterfazGrafica.MostrarMensajeGradualmente(Datos.Nombre +  " lanza su habilidad!\n");
-                                     enemigo.Caract.Estado = Estado.Hipnotizado;
-                                     InterfazGrafica.MostrarMensajeGradualmente(enemigo.Datos.Nombre + " fue hipnotizado!");
+                                     Thread.Sleep(1000);
+                                     acierto = random.Next(3);
+                                      if (acierto == 0 || acierto == 1) {
+                                        enemigo.Caract.Estado = Estado.Hipnotizado;
+                                        InterfazGrafica.MostrarEventoBatalla(enemigo.Datos.Nombre + $" fue {enemigo.mostrarEstado()}!");
+                                      } else {
+                                        InterfazGrafica.MostrarEventoBatalla("Habilidad esquivada!");
+                                      }
             break;
         }
     }
+    /*public void Curacion() {
+        Caract.Salud += 
+    }*/
     public int CalcularDanio(Personaje defensor) {
         Random random = new();
         int ataque = Caract.Destreza * Caract.Fuerza * Caract.Nivel;
-        int defensa = defensor.Caract.Armadura * defensor.Caract.Velocidad;
-        int efectividad = random.Next(20,101);
-        int danio = ((ataque * efectividad) - defensa)/300;
+        int defensa = defensor.Caract.Armadura * defensor.Caract.Velocidad * defensor.Caract.Nivel;
+        int efectividad = random.Next(1,101);
+        int danio = ((ataque * efectividad) - defensa)/500;
         return danio;
     }
     public bool EstaVivo() {
@@ -57,21 +91,21 @@ public class Personaje {
             case Estado.Normal: mensaje = "";
             break;
             case Estado.Paralizado: if (Datos.Genero == "Masculino") {
-                                        mensaje = "PARALIZADO";
+                                        mensaje = "paralizado";
                                     } else {
-                                        mensaje = "PARALIZADA";
+                                        mensaje = "paralizada";
                                     }
             break;
             case Estado.Envenenado: if (Datos.Genero == "Masculino") {
-                                        mensaje = "ENVENENADO";
+                                        mensaje = "envenenado";
                                     } else {
-                                        mensaje = "ENVENENADA";
+                                        mensaje = "envenenada";
                                     }
             break;
             case Estado.Hipnotizado: if (Datos.Genero == "Masculino") {
-                                        mensaje = "HIPNOTIZADO";
+                                        mensaje = "hipnotizado";
                                     } else {
-                                        mensaje = "HIPNOTIZADA";
+                                        mensaje = "hipnotizada";
                                     }
             break;
         }
@@ -152,8 +186,8 @@ public static class FabricaDePersonajes {
                                 fuerza = random.Next(7,10);
                                 armadura = random.Next(8,11);
             break;
-            case Tipo.Combatiente: velocidad = random.Next(6,9);
-                                   destreza = random.Next(4,7);
+            case Tipo.Combatiente: velocidad = random.Next(5,8);
+                                   destreza = random.Next(3,6);
                                    fuerza = random.Next(8,11);
                                    armadura = random.Next(7,10);
             break;
@@ -162,8 +196,8 @@ public static class FabricaDePersonajes {
                                 fuerza = random.Next(2,5);
                                 armadura = random.Next(1,4);
             break;
-            case Tipo.Estratega: velocidad = random.Next(4,7);
-                                 destreza = random.Next(7,11);
+            case Tipo.Estratega: velocidad = random.Next(3,6);
+                                 destreza = random.Next(8,11);
                                  fuerza = random.Next(3,6);
                                  armadura = random.Next(2,5);
             break;
@@ -199,10 +233,9 @@ public static class FabricaDePersonajes {
         string nombreHeroe = "Leonardo";
         int edadHeroe = 24;
         Datos d = new(ElegirTipoAleatorio(),nombreHeroe,edadHeroe,"Tucuman, Argentina","Masculino");
-        Caracteristicas c = new(5,5,5,5,ElegirHabilidadAleatoria());
+        Caracteristicas c = new(7,6,6,7,ElegirHabilidadAleatoria());
         Personaje p = new(d,c);
-        p.Caract.Nivel = 5;
-        p.Caract.Salud = 100;
+        p.Caract.Nivel = 3;
         return p;
     }
     
