@@ -118,6 +118,7 @@ public class Batalla {
                                             if (heroe.EstaVivo() && enemigo.EstaVivo()) {
                                                 InterfazGrafica.LimpiarPantalla();
                                                 InterfazGrafica.MostrarEstadoPersonajes(heroe,enemigo);
+                                                Thread.Sleep(1000);
                                                 InterfazGrafica.MostrarEventoBatalla(heroe.Datos.Nombre + " volvió a la normalidad\n");
                                                 Thread.Sleep(1000);
                                                 InterfazGrafica.LimpiarPantalla();

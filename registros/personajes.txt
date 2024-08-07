@@ -1,0 +1,192 @@
+[
+  {
+    "Datos": {
+      "Tipo": 3,
+      "Nombre": "Miss Yolanda S\u00E1nchez",
+      "Edad": 39,
+      "Locacion": "C\u00F3rdoba, Islas Baleares, Spain",
+      "Genero": "Femenino"
+    },
+    "Caract": {
+      "Velocidad": 10,
+      "Destreza": 8,
+      "Fuerza": 2,
+      "Nivel": 0,
+      "Armadura": 1,
+      "Salud": 50,
+      "Habilidad": 0,
+      "Estado": 0
+    }
+  },
+  {
+    "Datos": {
+      "Tipo": 1,
+      "Nombre": "Mr Alfonso Herrera",
+      "Edad": 59,
+      "Locacion": "Sevilla, Andaluc\u00EDa, Spain",
+      "Genero": "Masculino"
+    },
+    "Caract": {
+      "Velocidad": 1,
+      "Destreza": 4,
+      "Fuerza": 8,
+      "Nivel": 0,
+      "Armadura": 9,
+      "Salud": 50,
+      "Habilidad": 2,
+      "Estado": 0
+    }
+  },
+  {
+    "Datos": {
+      "Tipo": 4,
+      "Nombre": "Mr Pablo Sanz",
+      "Edad": 38,
+      "Locacion": "Zaragoza, Galicia, Spain",
+      "Genero": "Masculino"
+    },
+    "Caract": {
+      "Velocidad": 4,
+      "Destreza": 9,
+      "Fuerza": 5,
+      "Nivel": 0,
+      "Armadura": 2,
+      "Salud": 50,
+      "Habilidad": 2,
+      "Estado": 0
+    }
+  },
+  {
+    "Datos": {
+      "Tipo": 0,
+      "Nombre": "Ms Jos\u00E9 Romero",
+      "Edad": 47,
+      "Locacion": "Orense, Canarias, Spain",
+      "Genero": "Femenino"
+    },
+    "Caract": {
+      "Velocidad": 5,
+      "Destreza": 4,
+      "Fuerza": 8,
+      "Nivel": 0,
+      "Armadura": 5,
+      "Salud": 50,
+      "Habilidad": 0,
+      "Estado": 0
+    }
+  },
+  {
+    "Datos": {
+      "Tipo": 4,
+      "Nombre": "Mr Josep Gonz\u00E1lez",
+      "Edad": 48,
+      "Locacion": "Valencia, Comunidad Valenciana, Spain",
+      "Genero": "Masculino"
+    },
+    "Caract": {
+      "Velocidad": 3,
+      "Destreza": 10,
+      "Fuerza": 3,
+      "Nivel": 0,
+      "Armadura": 4,
+      "Salud": 50,
+      "Habilidad": 0,
+      "Estado": 0
+    }
+  },
+  {
+    "Datos": {
+      "Tipo": 4,
+      "Nombre": "Mr Jaime Iglesias",
+      "Edad": 67,
+      "Locacion": "Zaragoza, Navarra, Spain",
+      "Genero": "Masculino"
+    },
+    "Caract": {
+      "Velocidad": 4,
+      "Destreza": 9,
+      "Fuerza": 5,
+      "Nivel": 0,
+      "Armadura": 2,
+      "Salud": 50,
+      "Habilidad": 0,
+      "Estado": 0
+    }
+  },
+  {
+    "Datos": {
+      "Tipo": 2,
+      "Nombre": "Ms F\u00E1tima Ortega",
+      "Edad": 63,
+      "Locacion": "Zaragoza, Ceuta, Spain",
+      "Genero": "Femenino"
+    },
+    "Caract": {
+      "Velocidad": 7,
+      "Destreza": 3,
+      "Fuerza": 9,
+      "Nivel": 0,
+      "Armadura": 7,
+      "Salud": 50,
+      "Habilidad": 1,
+      "Estado": 0
+    }
+  },
+  {
+    "Datos": {
+      "Tipo": 1,
+      "Nombre": "Mr Carmelo Gil",
+      "Edad": 38,
+      "Locacion": "Cartagena, Pa\u00EDs Vasco, Spain",
+      "Genero": "Masculino"
+    },
+    "Caract": {
+      "Velocidad": 1,
+      "Destreza": 2,
+      "Fuerza": 8,
+      "Nivel": 0,
+      "Armadura": 10,
+      "Salud": 50,
+      "Habilidad": 1,
+      "Estado": 0
+    }
+  },
+  {
+    "Datos": {
+      "Tipo": 1,
+      "Nombre": "Mr Alfonso Santiago",
+      "Edad": 52,
+      "Locacion": "Ferrol, Castilla la Mancha, Spain",
+      "Genero": "Masculino"
+    },
+    "Caract": {
+      "Velocidad": 3,
+      "Destreza": 2,
+      "Fuerza": 8,
+      "Nivel": 0,
+      "Armadura": 9,
+      "Salud": 50,
+      "Habilidad": 1,
+      "Estado": 0
+    }
+  },
+  {
+    "Datos": {
+      "Tipo": 3,
+      "Nombre": "Mr Rafael Jim\u00E9nez",
+      "Edad": 73,
+      "Locacion": "Ferrol, Galicia, Spain",
+      "Genero": "Masculino"
+    },
+    "Caract": {
+      "Velocidad": 8,
+      "Destreza": 8,
+      "Fuerza": 3,
+      "Nivel": 0,
+      "Armadura": 3,
+      "Salud": 50,
+      "Habilidad": 1,
+      "Estado": 0
+    }
+  }
+]
