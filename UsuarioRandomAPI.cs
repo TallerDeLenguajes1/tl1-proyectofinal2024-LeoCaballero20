@@ -57,7 +57,7 @@ using System.Text.Json.Serialization;
     public static class GeneradorDeUsuarios {
     
         public static async Task<Results> GenerarUsuariosAsync() {
-        var url = "https://randomuser.me/api/?results=10&nat=es&inc=name,gender,dob,location&noinfo";
+        var url = "https://randomuser.me/api/?results=10&nat=es,en&inc=name,gender,dob,location&noinfo";
         try
         {
             HttpClient client = new HttpClient();

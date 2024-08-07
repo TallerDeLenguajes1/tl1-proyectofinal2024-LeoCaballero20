@@ -3,6 +3,7 @@
 ## **IDEA GENERAL**
 
 Es un juego de combate por turnos simple, en el que va aumentando la dificultad de las batallas a medida que éste avanza.
+En cada turno, cada personaje puede elegir entre Atacar o Lanzar habilidad, (habilidad que se otorga al azar.)
 Traté de hacer un proyecto en el que se cumplan todos los requisitos solicitados en la consigna, teniendo en cuenta cada una de las rúbricas, y, a partir de eso, avanzar en algo un poco más innovador.
 
 ## **CLASES Y RECURSOS**

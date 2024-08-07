@@ -8,7 +8,10 @@ public class Juego {
     private List<Batalla> batallas = new();
     public Juego(List<Usuario> usuarios) { 
         heroe = FabricaDePersonajes.CrearHeroe();
-        string nombreArchivo = "registros/personajes.txt";
+        string nombreArchivo = "json/personajes.txt";
+        if (usuarios==null) {
+            nombreArchivo = "json/personajes2.txt";
+        } 
         if (!PersonajesJson.Existe(nombreArchivo)) {
             foreach (Usuario usu in usuarios) {
                 Personaje enemigo = FabricaDePersonajes.CrearPersonaje(usu);
@@ -110,7 +113,7 @@ public class Juego {
     }
     public void Final(double duracionBatallas) {
         if (heroe.EstaVivo()) {
-            string nombreArchivo = "registros/ganadores.txt";
+            string nombreArchivo = "json/ganadores.txt";
             HistorialJson.GuardarGanador(heroe, duracionBatallas, nombreArchivo);
             InterfazGrafica.LimpiarPantalla();
             AdministradorDeMusica.ReproducirMusica("audio/victory-final.mp3");
