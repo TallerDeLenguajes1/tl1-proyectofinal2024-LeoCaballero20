@@ -1,4 +1,5 @@
 using PersonajeRecursos;
+using System.Diagnostics;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -18,14 +19,14 @@ public static class PersonajesJson {
 }
 
 public static class HistorialJson {
-    public static void GuardarGanador(Personaje ganador, string nombreArchivo) {
+    public static void GuardarGanador(Personaje ganador, double duracion, string nombreArchivo) {
         List<RegistroPartida> historial;
         if (Existe(nombreArchivo)) {
             historial = LeerGanadores(nombreArchivo);
         } else {
             historial = new();
         }
-        RegistroPartida registro = new(ganador,DateTime.Now);
+        RegistroPartida registro = new(ganador,DateTime.Now, duracion);
         historial.Add(registro);
         string jsonString = JsonSerializer.Serialize(historial, new JsonSerializerOptions { WriteIndented = true });
         File.WriteAllText(nombreArchivo, jsonString);
@@ -40,12 +41,14 @@ public static class HistorialJson {
     }
     public static void MostrarGanadores(string nombreArchivo) {
         List<RegistroPartida> historial = LeerGanadores(nombreArchivo);
+        InterfazGrafica.MostrarMensajeGradualmente("HISTORIAL DE GANADORES\n");
         foreach (RegistroPartida r in historial) {
-            InterfazGrafica.LimpiarPantalla();
-            Console.WriteLine("\nNombre del Ganador: " + r.Ganador.Datos.Nombre);
-            Console.WriteLine("Fecha: " + r.Fecha.ToString("dd/mm/YY") + "\n");
-            InterfazGrafica.EsperarEntradaUsuario();
+            InterfazGrafica.MostrarMensajeGradualmente("Nombre del Ganador: " + r.Ganador.Datos.Nombre);
+            InterfazGrafica.MostrarMensajeGradualmente("Fecha de la victoria: " + r.Fecha.ToString("dd/MM/yyyy"));
+            InterfazGrafica.MostrarMensajeGradualmente($"Duración de las batallas: {r.DuracionEnMinutos:F2} minutos\n");  
+            Thread.Sleep(1000);
         }
+        InterfazGrafica.EsperarEntradaUsuario();
     }
 }
 public class RegistroPartida {
@@ -55,14 +58,19 @@ public class RegistroPartida {
 
     [JsonPropertyName("fecha")]
     DateTime fecha;
+
+    [JsonPropertyName("duracion")]
+    double duracionEnMinutos;
     
     public RegistroPartida() {}
 
-    public RegistroPartida(Personaje gan, DateTime fec) {
+    public RegistroPartida(Personaje gan, DateTime fec, double dur) {
         ganador = gan;
         fecha = fec;
+        DuracionEnMinutos = dur;
     }
 
     public Personaje Ganador { get => ganador; set => ganador = value; }
     public DateTime Fecha { get => fecha; set => fecha = value; }
+    public double DuracionEnMinutos { get => duracionEnMinutos; set => duracionEnMinutos = value; }
 }
