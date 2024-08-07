@@ -53,5 +53,7 @@ Documentación: https://github.com/naudio/NAudio/tree/master
 ## **IMPLEMENTACIÓN DE SERVICIO WEB**
 
 Para implementar el uso de un servicio web en el proyecto, utilicé una API generadora de usuarios random. Dicho usuario viene con muchos datos como ser el nombre, la edad, fecha de nacimiento, dirección, ubicación, género y más. De estos datos saqué lo que me pareció más relevante, para darle a los personajes enemigos un nombre, el género, la edad, y la ubicación.
+El enlace para llamar a la api es https://randomuser.me/api/. A éste se le pueden agregar parámetros como 'results','inc' y 'nat' para modificar la salida como uno prefiera. Por ej: 'results=10' devolvería 10 usuarios random; si a esto le agregamos 'inc=name,gender', los 10 usuarios vendrían con nombre y género; con 'nat=es' los usuarios serían de nacionalidades de habla hispana.
+El enlace que yo uso en este juego es https://randomuser.me/api/?results=10&nat=es,en&inc=name,gender,dob,location&noinfo .
 
 Documentación: https://randomuser.me/

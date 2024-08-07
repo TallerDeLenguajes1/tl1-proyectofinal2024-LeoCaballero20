@@ -1,0 +1,48 @@
+[
+  {
+    "Ganador": {
+      "Datos": {
+        "Tipo": 0,
+        "Nombre": "Leo",
+        "Edad": 24,
+        "Locacion": "Tucuman, Argentina",
+        "Genero": "Masculino"
+      },
+      "Caract": {
+        "Velocidad": 7,
+        "Destreza": 6,
+        "Fuerza": 6,
+        "Nivel": 4,
+        "Armadura": 7,
+        "Salud": 50,
+        "Habilidad": 0,
+        "Estado": 0
+      }
+    },
+    "Fecha": "2024-08-07T14:57:09.3363744-03:00",
+    "DuracionEnMinutos": 0.9790065266666667
+  },
+  {
+    "Ganador": {
+      "Datos": {
+        "Tipo": 2,
+        "Nombre": "Javier",
+        "Edad": 30,
+        "Locacion": "Tucuman, Argentina",
+        "Genero": "Masculino"
+      },
+      "Caract": {
+        "Velocidad": 7,
+        "Destreza": 6,
+        "Fuerza": 6,
+        "Nivel": 4,
+        "Armadura": 7,
+        "Salud": 50,
+        "Habilidad": 0,
+        "Estado": 0
+      }
+    },
+    "Fecha": "2024-08-07T15:11:09.9696482-03:00",
+    "DuracionEnMinutos": 1.878721455
+  }
+]
